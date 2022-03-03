@@ -71,19 +71,19 @@ def transform_features(data, train_split):
 
     """
     try:
-        data["open_diff"] = data["open"].diff()
-        data["high_diff"] = data["high"].diff()
-        data["low_diff"] = data["low"].diff()
-        data["Volume_SOL_diff"] = data["Volume_SOL"].diff()
-        data["Volume_USDT_diff"] = data["Volume_USDT"].diff()
-        data["close_diff"] = data["close"].diff()
+        data["open_diff"] = data["open"]- data["open"].shift(-1)
+        data["high_diff"] = data["high"]- data["high"].shift(-1)
+        data["low_diff"] = data["low"]- data["low"].shift(-1)
+        data["Volume_SOL_diff"] = data["Volume_SOL"] - data["Volume_SOL"].shift(-1)
+        data["Volume_USDT_diff"] = data["Volume_USDT"] - data["Volume_USDT"].shift(-1)
+        data["close_diff"] = data["close"]- data["close"].shift(-1)
         ##
-        data["open_btc_diff"] = data["open_btc"].diff()
-        data["high_btc_diff"] = data["high_btc"].diff()
-        data["low_btc_diff"] = data["low_btc"].diff()
-        data["Volume_BTC_diff"] = data["Volume_BTC"].diff()
-        data["Volume_USDT_btc_diff"] = data["Volume_USDT_btc"].diff()
-        data["close_btc_diff"] = data["close_btc"].diff()
+        data["open_btc_diff"] = data["open_btc"]- data["close"].shift(-1)
+        data["high_btc_diff"] = data["high_btc"]- data["close"].shift(-1)
+        data["low_btc_diff"] = data["low_btc"]- data["close"].shift(-1)
+        data["Volume_BTC_diff"] = data["Volume_BTC"]- data["close"].shift(-1)
+        data["Volume_USDT_btc_diff"] = data["Volume_USDT_btc"]- data["close"].shift(-1)
+        data["close_btc_diff"] = data["close_btc"]- data["close"].shift(-1)
 
         data["daily_change"] = data["close"] - data["open"]
         data["daily_range"] = data["high"] - data["low"]

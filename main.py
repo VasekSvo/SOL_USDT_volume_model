@@ -76,7 +76,7 @@ def main():
 
     ## Out of highly correlated features select only once with highest feature importance
     cor = df[features_top].corr()
-    drop_cor = select_by_corr(cor, threshold=0.9)
+    drop_cor = select_by_corr(cor, threshold=threshold_corr)
     ## drop those features
     features_top = [x for x in features_top if x not in drop_cor[0]]
 
@@ -87,7 +87,7 @@ def main():
     y_train, y_test = df.loc[df["train"] == 1, target], df.loc[df["train"] == 0, target]
 
     ## Retrain RF with final features (and tweak the hyper paramaters)
-    params["max_features"] = 8
+    params["max_features"] = 4
     rf2 = ensemble.RandomForestRegressor(**params)
     rf2.fit(X_train, y_train)
 

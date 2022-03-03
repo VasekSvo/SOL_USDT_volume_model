@@ -18,7 +18,8 @@ train_split = "2022-01-01"
 ar = 2
 # moving average windows
 ma = [28, 14, 7]
-
+# threshold for correlation based feature reduction
+threshold_corr=0.9
 
 ## columns to use for moving average/lagged features
 rolling_window_ftr = [
