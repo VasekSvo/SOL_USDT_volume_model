@@ -101,7 +101,7 @@ def main():
         ["date", "Volume_SOL", "train"]
         + ["volume_predict", "volume_predict_q" + str(q), "volume_predict_q" + str(p)]
         + features_top
-    ].to_csv("results_scored.csv")
+    ].to_csv("results_scored.csv",index=False)
 
     ## Save model
     pickle.dump(rf2, open("random_forest.pkl", "wb"))
